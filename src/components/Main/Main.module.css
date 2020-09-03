@@ -1,0 +1,16 @@
+/* .dark {
+  mix-blend-mode: difference;
+} */
+.main {
+  display: grid;
+  grid-template-columns: 0.3fr 1.7fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: ". .";
+  color: #272727;
+  background-color: #d9d8d9;
+}
+@media only screen and (max-width: 768px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}

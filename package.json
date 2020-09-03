@@ -1,0 +1,76 @@
+{
+  "name": "my-starter-kit-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "cypress": "^3.3.1",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-15": "^1.4.0",
+    "gh-pages": "^2.0.1",
+    "lodash": "^4.17.20",
+    "moment": "^2.27.0",
+    "node-sass": "^4.12.0",
+    "prop-types": "15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "3.0.1",
+    "react-spring": "^8.0.23",
+    "react-test-renderer": "^16.8.6",
+    "source-map-explorer": "^1.8.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:debug": "react-scripts --inspect-brk test --runInBand --no-cache",
+    "test-coverage": "yarn test --coverage --watchAll=false",
+    "snap-shot-update": "yarn test -u",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "eject": "react-scripts eject",
+    "precommit": "yarn test",
+    "predeploy": "npm run build",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "e2e": "cypress run --record --key 7e57d88b-9be7-44cf-8039-47263ff266f3"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*.{js,jsx,ts,tsx}.snap",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/src/index.js",
+      "!<rootDir>/src/config/index.js",
+      "!<rootDir>/src/icons/index.js",
+      "!<rootDir>/src/icons/BurstMode.js",
+      "!<rootDir>/src/icons/Person.js",
+      "!<rootDir>/path/to/dir/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "text"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
