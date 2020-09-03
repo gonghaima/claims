@@ -1,14 +1,14 @@
 # Features
 
-React hook/effect/context api (store, reducer, etc)
-Mobile First/ Responsive/ Material Style
-Use Debounce
-CSS module
-Unit test
-Coverage
-E2E test
-Dark Mode
-Pre commit check
+- React hook/effect/context api (store, reducer, etc)
+- Mobile First/ Responsive/ Material Style
+- Use Debounce
+- CSS module
+- Unit test
+- Coverage
+- E2E test
+- Dark Mode
+- Pre commit check
 
 ## Installation
 
