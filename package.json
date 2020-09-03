@@ -1,7 +1,8 @@
 {
   "name": "my-starter-kit-dashboard",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "http://gonghaima.github.io/claims",
   "dependencies": {
     "cypress": "^3.3.1",
     "enzyme": "^3.9.0",
@@ -29,10 +30,11 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "eject": "react-scripts eject",
     "precommit": "yarn test",
-    "predeploy": "npm run build",
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
-    "e2e": "cypress run --record --key 7e57d88b-9be7-44cf-8039-47263ff266f3"
+    "e2e": "cypress run --record --key 7e57d88b-9be7-44cf-8039-47263ff266f3",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
