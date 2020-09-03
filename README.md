@@ -77,3 +77,16 @@ sudo apt-get install -y nodejs
 curl -sL https://deb.nodesource.com/setup_11.x | bash -
 apt-get install -y nodejs
 ```
+
+### Decisions
+
+- moment - friendly api for date time utils
+- node-sass - required by css modules
+- lodash - reliable utils for data manipulation
+- react-spring - smooth dom transition
+- gh-pages - deployment on github pages
+
+### Compromises
+
+- styled component library may be better than css modules
+- more user feedback & UI/UX enhancement
