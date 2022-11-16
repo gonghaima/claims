@@ -1,43 +1,34 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { StoreContext } from "../../store";
-import { initialState } from "../../reducers";
-import Header from "./index";
-import { act } from "react-dom/test-utils";
+import React from 'react';
+import { StoreContext } from '../../store';
+import { initialState } from '../../reducers';
+import { render, screen } from '@testing-library/react';
+import mockedClaimsData from '../../mocks/claimsData.json';
+import Header from './index';
 
-let container;
-beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
+initialState['sourceData'] = mockedClaimsData;
 
-afterEach(() => {
-  document.body.removeChild(container);
-  container = null;
-});
-
-test("Header with ReactDOM should render successfully", () => {
-  act(() => {
-    ReactDOM.render(
-      <StoreContext.Provider value={[initialState, () => {}]}>
+test('Nav with ReactDOM should render successfully', () => {
+  render(
+    <StoreContext.Provider value={[initialState, () => {}]}>
+      <div data-testid="container">
         <Header />
-      </StoreContext.Provider>,
-      container
-    );
-  });
-  expect(container.children[0].attributes[0].value).toBe("header ");
+      </div>
+    </StoreContext.Provider>
+  );
+  const containerElement = screen.getByTestId('container');
+  expect(containerElement.innerHTML).toContain('header');
 });
 
-test("Header in darkMode should render successfully", () => {
-  act(() => {
-    ReactDOM.render(
-      <StoreContext.Provider
-        value={[{ ...initialState, ...{ darkMode: true } }, () => {}]}
-      >
+test('Header in darkMode should render successfully', () => {
+  render(
+    <StoreContext.Provider
+      value={[{ ...initialState, ...{ darkMode: true } }, () => {}]}
+    >
+      <div data-testid="container">
         <Header />
-      </StoreContext.Provider>,
-      container
-    );
-  });
-  expect(container.children[0].attributes[0].value).toBe("header dark");
+      </div>
+    </StoreContext.Provider>
+  );
+  const containerElement = screen.getByTestId('container');
+  expect(containerElement.innerHTML).toContain('header dark');
 });

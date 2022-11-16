@@ -1,18 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders without crashing 1`] = `
-Array [
+exports[`App with ReactDOM should render successfully 1`] = `
+<div
+  data-testid="container"
+>
   <div
-    className="header "
+    class="header "
   >
     <div
-      className="wrapper"
+      class="wrapper"
     >
       <div
-        className="leftWrapper"
+        class="leftWrapper"
       >
         <a
-          className="iconWrapper"
+          class="iconWrapper"
           href="/"
         >
           <svg
@@ -35,9 +37,8 @@ Array [
         </h4>
       </div>
       <div
-        className="icon"
+        class="icon"
         data-test-id="switchMode"
-        onClick={[Function]}
       >
         <svg
           height="24"
@@ -55,21 +56,21 @@ Array [
         </svg>
       </div>
     </div>
-  </div>,
+  </div>
   <div
-    className="subheader  "
+    class="subheader  "
     data-test-id="all"
   >
     <h3>
       Assessors
     </h3>
     <div
-      className="container"
+      class="container"
     >
       All
     </div>
     <div
-      className="iconWrapper"
+      class="iconWrapper"
     >
       <svg
         height="24"
@@ -128,12 +129,12 @@ Array [
         />
       </svg>
     </div>
-  </div>,
+  </div>
   <div
-    className="fullScreenWrapper"
+    class="fullScreenWrapper"
   >
     <div
-      className="loader-ios"
+      class="loader-ios"
     >
       <svg
         height="60"
@@ -179,6 +180,6 @@ Array [
         />
       </svg>
     </div>
-  </div>,
-]
+  </div>
+</div>
 `;

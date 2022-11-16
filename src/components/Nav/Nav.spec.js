@@ -1,50 +1,33 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter as Router } from "react-router-dom";
-import { StoreContext } from "../../store";
-import { initialState } from "../../reducers";
-import Nav from "./index";
-import { act } from "react-dom/test-utils";
-import mockedClaimsData from "../../mocks/claimsData.json";
+import React from 'react';
+import { StoreContext } from '../../store';
+import { initialState } from '../../reducers';
+import { render, screen } from '@testing-library/react';
+import mockedClaimsData from '../../mocks/claimsData.json';
+import Nav from './index';
 
-let container;
-beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
+initialState['sourceData'] = mockedClaimsData;
+test('Nav with ReactDOM should render successfully', () => {
+  render(
+    <StoreContext.Provider value={[initialState, () => {}]}>
+      <div data-testid="container">
+        <Nav />
+      </div>
+    </StoreContext.Provider>
+  );
+  const containerElement = screen.getByTestId('container');
+  expect(containerElement.innerHTML).toContain('nav');
 });
 
-afterEach(() => {
-  document.body.removeChild(container);
-  container = null;
-});
-
-test("Nav with ReactDOM should render successfully", () => {
-  act(() => {
-    initialState['sourceData'] = mockedClaimsData;
-    ReactDOM.render(
-      <StoreContext.Provider value={[initialState, () => { }]}>
-        <Router>
-          <Nav />
-        </Router>
-      </StoreContext.Provider>,
-      container
-    );
-  });
-  expect(container.children[0].attributes[0].value).toBe("nav ");
-});
-
-test("Nav with ReactDOM in darkMode should render successfully", () => {
-  act(() => {
-    ReactDOM.render(
-      <StoreContext.Provider
-        value={[{ ...initialState, ...{ darkMode: true }, ...{ sourceData: mockedClaimsData } }, () => { }]}
-      >
-        <Router>
-          <Nav />
-        </Router>
-      </StoreContext.Provider>,
-      container
-    );
-  });
-  expect(container.children[0].attributes[0].value).toBe("nav dark");
+test('Nav with ReactDOM in darkMode should render successfully', () => {
+  render(
+    <StoreContext.Provider
+      value={[{ ...initialState, ...{ darkMode: true } }, () => {}]}
+    >
+      <div data-testid="container">
+        <Nav />
+      </div>
+    </StoreContext.Provider>
+  );
+  const containerElement = screen.getByTestId('container');
+  expect(containerElement.innerHTML).toContain('nav dark');
 });

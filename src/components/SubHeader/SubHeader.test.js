@@ -1,31 +1,32 @@
-import React, { useReducer, createContext, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { StoreProvider, StoreContext, reducer } from "../../store";
-import { initialState } from "../../reducers";
-import SubHeader from "./index";
-import { act } from "react-dom/test-utils";
+import React from 'react';
+import { StoreContext } from '../../store';
+import { initialState } from '../../reducers';
+import SubHeader from './index';
+import { render, screen } from '@testing-library/react';
 
-let container;
-beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
-
-afterEach(() => {
-  document.body.removeChild(container);
-  container = null;
-});
-
-test("Subheader with ReactDOM in darkMode should render successfully", () => {
-  act(() => {
-    ReactDOM.render(
-      <StoreContext.Provider
-        value={[{ ...initialState, ...{ darkMode: true } }, () => { }]}
-      >
+test('Subheader with ReactDOM in standard mode should render successfully', () => {
+  render(
+    <StoreContext.Provider
+      value={[{ ...initialState, ...{ showMenu: false } }, () => {}]}
+    >
+      <div data-testid="container">
         <SubHeader />
-      </StoreContext.Provider>,
-      container
-    );
-  });
-  expect(container.children[0].attributes[0].value).toBe("subheader dark ");
+      </div>
+    </StoreContext.Provider>
+  );
+  const containerElement = screen.getByTestId('container');
+  expect(containerElement.innerHTML).toContain('hide');
+});
+test('Subheader with ReactDOM in darkMode should render successfully', () => {
+  render(
+    <StoreContext.Provider
+      value={[{ ...initialState, ...{ darkMode: true } }, () => {}]}
+    >
+      <div data-testid="container">
+        <SubHeader />
+      </div>
+    </StoreContext.Provider>
+  );
+  const darkSubHeader = screen.getByTestId('container').querySelector('.dark');
+  expect(darkSubHeader).toBeInTheDocument;
 });

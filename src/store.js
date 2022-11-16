@@ -21,7 +21,7 @@ export const StoreProvider = ({ children }) => {
           payload: data
         });
       });
-  }, [state]);
+  }, [state?.initialised]);
 
   return (
     <StoreContext.Provider value={[state, dispatch]}>

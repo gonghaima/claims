@@ -1,32 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { StoreContext } from "../../store";
-import SearchText from "./SearchText";
-import { act } from "react-dom/test-utils";
-import { BrowserRouter as Router } from "react-router-dom";
-import { initialState } from "../../reducers";
+import React from 'react';
+import { StoreContext } from '../../store';
+import { initialState } from '../../reducers';
+import { render, screen } from '@testing-library/react';
+import SearchText from './SearchText';
 
-let container;
-beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
+test('SearchText with ReactDOM should render successfully', () => {
+  render(
+    <StoreContext.Provider value={[{ initialState }, () => {}]}>
+      <div data-testid="container">
+        <SearchText />
+      </div>
+    </StoreContext.Provider>
+  );
+  const containerElement = screen.getByTestId('container');
 
-afterEach(() => {
-  document.body.removeChild(container);
-  container = null;
-});
-
-test("SearchText with ReactDOM should render successfully", () => {
-  act(() => {
-    ReactDOM.render(
-      <StoreContext.Provider value={[initialState, () => { }]}>
-        <Router>
-          <SearchText />
-        </Router>
-      </StoreContext.Provider>,
-      container
-    );
-  });
-  expect(container.children[0].attributes[0].value).toBe("searchSection");
+  expect(containerElement).toBeInTheDocument;
+  expect(containerElement.innerHTML).toContain('searchInput');
 });
